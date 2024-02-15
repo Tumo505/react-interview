@@ -2,12 +2,28 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+    const getUsers = () => {
+      try {
+          fetch("https://api.github.com/users")
+              .then(res => res.json())
+              .then(data => {
+                  console.log(data);
+              })
+              .catch(error => {
+                  console.error('Error fetching data:', error);
+              });
+      } catch (err) {
+          console.log(err);
+      }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <button onClick={getUsers}>get users</button>
         </p>
         <a
           className="App-link"
